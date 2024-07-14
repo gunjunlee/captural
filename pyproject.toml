@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+
+build-backend = "setuptools.build_meta"
+
+[project]
+authors = [
+  {name = "Gunjun Lee", email = "gunjunlee97@gmail.com"},
+]
+maintainers = [
+  {name = "Gunjun Lee", email = "gunjunlee97@gmail.com"},
+]
+requires-python = ">= 3.6"
+name = "captural"
+description = "capture tensor flow in pytorch"
+dynamic = ["version"]
+readme = "README.md"
+license = {text = "MIT License"}
+
+# Development dependencies
+# pip install -e .[lint,test,dist]
+# or you can install all dependencies with
+# pip install -e .[dev]
+[project.optional-dependencies]
+lint = [
+  "black",
+  "flake8",
+  "isort",
+  "mypy",
+  "pre-commit",
+  "ruff",
+]
+
+test = [
+  "pytest-xdist",
+  "pytest",
+  "pytest-cov",
+  "pytest-mock",
+  "timm",
+  "torch",
+  "torchvision",
+  "diffusers",
+  "tqdm",
+]
+
+dist = [
+  "setuptools",
+  "wheel",
+  "twine",
+]
+
+dev = [
+  "captural[lint,test,dist]",
+  "jupyter",
+  "notebook",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+markers = [
+  "fast", #: marks tests that are fast
+  "torchvision", #: marks tests that require torchvision library
+]
+testpaths = [
+  "tests",
+]
